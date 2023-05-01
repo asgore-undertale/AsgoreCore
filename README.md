@@ -1,1 +1,1 @@
-A small rust library to manipulate text
+A small rust library to manipulate arabic text to fit in non-supporting arabic games or programes
