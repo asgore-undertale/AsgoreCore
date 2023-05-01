@@ -1,0 +1,1 @@
+A small rust library to manipulate text
