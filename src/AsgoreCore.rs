@@ -424,7 +424,7 @@ pub fn reverse_brackets(text: &str) -> String {
 	text
 }
 
-pub fn reverse_arabic(text: &str) -> String {
+pub fn smart_reverse(text: &str) -> String {
 	let FULL_ARABIC: &str = &(ARABIC_CHARS.to_owned() + ARABIC_SYMBOLS + FREEZED_ARABIC_CHARS + ALL_HARAKAT + &MERGED_ARABIC_MAP.keys().map(|key| key.to_string()).collect::<Vec<String>>().join("") + &BRACKETS_LIST.join(""));
 	let mut last_pos: usize = 0;
 	let mut newtext: Vec<String> = Vec::new();
@@ -1026,7 +1026,7 @@ pub fn split_line(line_text: &str) -> Vec<String> {
 	line_vec
 }
 
-pub fn word_warp(text: &str, fontmap: &HashMap<char, [isize; 8]>, font_size: usize, box_size: [usize; 2], px_per_line: usize, page_com: &str, line_com: &str, coms_pattern: &str, offset_com: &str) -> String {
+pub fn fit_text_in_box(text: &str, fontmap: &HashMap<char, [isize; 8]>, font_size: usize, box_size: [usize; 2], px_per_line: usize, page_com: &str, line_com: &str, coms_pattern: &str, offset_com: &str, fill_with_char: &str) -> String {
     if fontmap.is_empty(){
 		return text.to_string();
 	}
@@ -1076,6 +1076,11 @@ pub fn word_warp(text: &str, fontmap: &HashMap<char, [isize; 8]>, font_size: usi
         }
         pages[i] = lines.join("");
     }
+	for p in 0..pages.len() {
+		for l in 0..pages[p].len() {
+			pages[p][l] += fill_with_char.repeat(box_size[0] - pages[p][l].len);
+		}
+	}
     pages.join(page_com).replace(&(" ".to_owned()+page_com), page_com).replace(&(" ".to_owned()+line_com), line_com)
 }
 
