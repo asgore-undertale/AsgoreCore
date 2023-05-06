@@ -1,6 +1,6 @@
 [package]
 name = "AsgoreCore"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["asgore-undertale"]
 description = "A small rust library to manipulate arabic text to fit in non-supporting arabic games or programes"
