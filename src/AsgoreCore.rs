@@ -1079,7 +1079,8 @@ pub fn fit_text_in_box(text: &str, fontmap: &HashMap<char, [isize; 8]>, font_siz
 	for p in 0..pages.len() {
 		let mut lines: Vec<String> = pages[p].split(line_com).map(|x| x.to_string()).collect();
 		for l in 0..lines.len() {
-			lines[l] += &fill_with_char.repeat(box_size[0] as usize - &lines[l].len());
+			let n = lines[l].len();
+			lines[l] += &fill_with_char.repeat(box_size[0] as usize - n);
 		}
 		pages[p] = lines.join("");
 	}
