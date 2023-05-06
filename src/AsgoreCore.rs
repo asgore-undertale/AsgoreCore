@@ -1077,9 +1077,11 @@ pub fn fit_text_in_box(text: &str, fontmap: &HashMap<char, [isize; 8]>, font_siz
         pages[i] = lines.join("");
     }
 	for p in 0..pages.len() {
-		for l in 0..pages[p].len() {
-			pages[p][l] += fill_with_char.repeat(box_size[0] - pages[p][l].len());
+		let mut lines: Vec<String> = pages[i].split(line_com).map(|x| x.to_string()).collect();
+		for j in 0..lines.len() {
+			lines[l] += fill_with_char.repeat(box_size[0] - lines[l].len());
 		}
+		pages[p] = lines.join("");
 	}
     pages.join(page_com).replace(&(" ".to_owned()+page_com), page_com).replace(&(" ".to_owned()+line_com), line_com)
 }
