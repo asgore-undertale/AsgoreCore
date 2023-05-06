@@ -1078,7 +1078,7 @@ pub fn fit_text_in_box(text: &str, fontmap: &HashMap<char, [isize; 8]>, font_siz
     }
 	for p in 0..pages.len() {
 		for l in 0..pages[p].len() {
-			pages[p][l] += fill_with_char.repeat(box_size[0] - pages[p][l].len);
+			pages[p][l] += fill_with_char.repeat(box_size[0] - pages[p][l].len());
 		}
 	}
     pages.join(page_com).replace(&(" ".to_owned()+page_com), page_com).replace(&(" ".to_owned()+line_com), line_com)
